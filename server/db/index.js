@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 
+// var mysql = require('promise-mysql');
+
 exports.dbConnection = mysql.createConnection({
   user: 'root',
   password: 'root',

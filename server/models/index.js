@@ -3,24 +3,39 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function () {}, // a function which produces all the messages
-    post: function () {} // a function which can be used to insert a message into the database
+    post: function (msgObj) {
+      console.log('message inside models.messages.post:', msgObj);
+      var createdAt = Date.now();
+      // ***
+      // TODO: replace hardcoded values with dynamic ones based on querying for appropriate IDs
+      // ***
+      var query = 'INSERT INTO messages (user, text, room) VALUES ("1", "';
+      query += msgObj.message;
+      query += '", "1")';
+
+      db.dbConnection.query(
+        
+        query,
+        function(err, rows, fields) {
+          if (err) {
+            throw err;
+          }
+          console.log('inserted message into table');
+        });
+       
+    } // a function which can be used to insert a message into the database
   },
 
   users: {
     // Ditto as above.
     get: function () {},
     post: function (username) {
-      console.log('username', username);
-
-      db.dbConnection.connect();
 
       db.dbConnection.query(`INSERT INTO users (username) VALUES ('${username}')`, function(err, rows, fields) {
-        if (err) throw err;
-       
-        console.log('The solution is: ', rows);
+        if (err) {
+          throw err;
+        }
       });
-       
-      db.dbConnection.end();
 
 
     }

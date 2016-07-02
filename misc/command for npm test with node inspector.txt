@@ -1,0 +1,1 @@
+// "test": "node-inspector --no-preload & mocha server/spec/server-spec.js --debug-brk; RES=$?; kill %1; exit $RES",

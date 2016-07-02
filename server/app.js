@@ -1,5 +1,6 @@
 var express = require('express');
 var db = require('./db');
+require('node-monkey').start({ host: '127.0.0.1', port: '50500'});
 
 // Middleware
 var morgan = require('morgan');

@@ -10,7 +10,7 @@ CREATE TABLE messages (
   `user` INTEGER NULL DEFAULT NULL,
   `room` INTEGER NULL DEFAULT NULL,
   `text` TEXT NULL DEFAULT NULL,
-  `createdAt` DATETIME,
+  -- `createdAt` DATETIME,
   PRIMARY KEY (`id`)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE rooms (
 -- ---
 
 ALTER TABLE `messages` ADD FOREIGN KEY (user) REFERENCES `users` (`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES `rooms` (`id`);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES `rooms` (`id`);
 
 
 /*  Execute this file from the command line by typing:
