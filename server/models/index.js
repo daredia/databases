@@ -2,7 +2,16 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () {}, // a function which produces all the messages
+    get: function (res) { // a function which produces all the messages
+      // need to respond with a stringified JSON object (in the response body)
+      // object contains all messages
+      // need to query the db for all messages using select *
+        // rows will be an array of objects, we can json.stringify "rows" and respond with it
+
+
+
+      res.end('successfully retrieved messages');
+    }, 
     post: function (msgObj, res) { // a function which can be used to insert a message into the database
       console.log('message inside models.messages.post:', msgObj);
       var createdAt = Date.now();
