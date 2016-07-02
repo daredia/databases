@@ -3,12 +3,9 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function () {}, // a function which produces all the messages
-    post: function (msgObj) {
+    post: function (msgObj, res) { // a function which can be used to insert a message into the database
       console.log('message inside models.messages.post:', msgObj);
       var createdAt = Date.now();
-      // ***
-      // TODO: replace hardcoded values with dynamic ones based on querying for appropriate IDs
-      // ***
       var userID = '';
       var userQ = 'select id from users where username = "' + msgObj.username + '";';
 
@@ -19,7 +16,7 @@ module.exports = {
           if (err) {
             throw err;
           }
-          userID = rows[rows.length - 1].id;
+          userID = rows[rows.length - 1].id; // maybe need to handle if it returns just one object and not an array
           var query = 'INSERT INTO messages (user, text, room) VALUES ("';
           query += userID + '", "';
           query += msgObj.message;
@@ -31,38 +28,26 @@ module.exports = {
             }
             console.log(rows);
             console.log('inserted message into table');
+            res.end('successfully posted message');
           });
           // console.log('rows: ', rows[rows.length - 1].id);
-          // console.log('fields: ', fields);
         }
       );
        
-    } // a function which can be used to insert a message into the database
-
-
-
-    //   db.dbConnection.query(
-        
-    //     query,
-    //     function(err, rows, fields) {
-    //       if (err) {
-    //         throw err;
-    //       }
-    //       console.log('inserted message into table');
-    //     });
+    } 
        
-    // } // a function which can be used to insert a message into the database
   },
 
   users: {
     // Ditto as above.
     get: function () {},
-    post: function (username) {
+    post: function (username, res) {
 
       db.dbConnection.query(`INSERT INTO users (username) VALUES ('${username}')`, function(err, rows, fields) {
         if (err) {
           throw err;
         }
+        res.end('successfully posted username');
       });
 
 
