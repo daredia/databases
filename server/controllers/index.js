@@ -1,4 +1,5 @@
 var models = require('../models');
+var app = require('../app.js');
 
 module.exports = {
   messages: {
@@ -9,7 +10,16 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {},
-    post: function (req, res) {}
+    post: function (req, res) {
+
+      models.users.post(req.body.username);
+
+      //parse the JSON from the req body
+        //extract the username
+        //call the method on the model and pass the username 
+      //res with 201
+      //res end
+    }
   }
 };
 

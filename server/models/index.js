@@ -9,7 +9,22 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function () {}
+    post: function (username) {
+      console.log('username', username);
+
+      db.dbConnection.connect();
+
+      db.dbConnection.query(`INSERT INTO users (username) VALUES ('${username}')`, function(err, rows, fields) {
+        if (err) throw err;
+       
+        console.log('The solution is: ', rows);
+      });
+       
+      db.dbConnection.end();
+
+
+    }
   }
 };
+
 
