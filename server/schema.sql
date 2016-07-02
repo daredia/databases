@@ -8,7 +8,7 @@ CREATE TABLE messages (
   /* Describe your table here.*/
   `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `user` INTEGER NULL DEFAULT NULL,
-  `room` INTEGER NULL DEFAULT NULL,
+  `room` VARCHAR(100) NULL DEFAULT 'NULL',
   `text` TEXT NULL DEFAULT NULL,
   -- `createdAt` DATETIME,
   PRIMARY KEY (`id`)
@@ -24,13 +24,13 @@ CREATE TABLE users (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `rooms`;
+-- DROP TABLE IF EXISTS `rooms`;
 
-CREATE TABLE rooms (
-  `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
-  `roomname` VARCHAR(100) NULL DEFAULT 'lobby',
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE rooms (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+--   `roomname` VARCHAR(100) NULL DEFAULT 'lobby',
+--   PRIMARY KEY (`id`)
+-- );
 
 
 -- ---
