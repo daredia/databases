@@ -4,7 +4,7 @@ var app = require('../app.js');
 module.exports = {
   messages: {
     get: function (req, res) { // a function which handles a get request for all messages
-      models.messages.get(req.body, res);
+      models.messages.get(res);
     }, 
     post: function (req, res) {
       models.messages.post(req.body, res);

@@ -3,14 +3,17 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (res) { // a function which produces all the messages
-      // need to respond with a stringified JSON object (in the response body)
-      // object contains all messages
-      // need to query the db for all messages using select *
-        // rows will be an array of objects, we can json.stringify "rows" and respond with it
 
+      db.dbConnection.query(
+        'select * from messages;',
+        function(err, rows, fields) {
+          if (err) {
+            throw err;
+          }
+          res.send(JSON.stringify(rows));
+        }
+      );
 
-
-      res.end('successfully retrieved messages');
     }, 
     post: function (msgObj, res) { // a function which can be used to insert a message into the database
       console.log('message inside models.messages.post:', msgObj);
@@ -35,11 +38,8 @@ module.exports = {
             if (err) {
               throw err;
             }
-            console.log(rows);
-            console.log('inserted message into table');
             res.end('successfully posted message');
           });
-          // console.log('rows: ', rows[rows.length - 1].id);
         }
       );
        
