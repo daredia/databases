@@ -60,13 +60,14 @@ var app = {
       contentType: 'application/json',
       // data: { order: '-createdAt'}, TODO: reimplement
       success: function(data) {
-        // Don't bother if we have nothing to work with
         debugger;
+        // Don't bother if we have nothing to work with
+        data = JSON.parse(data);
         if (!data.results || !data.results.length) { return; }
 
         // Get the last message
         var mostRecentMessage = data.results[data.results.length - 1];
-        var displayedRoom = $('.chat span').first().data('roomname');
+        var displayedRoom = app.$roomSelect.val();
         app.stopSpinner();
         // Only bother updating the DOM if we have a new message
         if (mostRecentMessage.id !== app.lastMessageId || app.roomname !== displayedRoom) {
@@ -112,7 +113,7 @@ var app = {
   },
 
   populateRooms: function(results) {
-    app.$roomSelect.html('<option value="__newRoom">New room...</option><option value="" selected>Lobby</option></select>');
+    app.$roomSelect.html('<option value="__newRoom">New room...</option><option value="lobby" selected>Lobby</option></select>');
 
     if (results) {
       var rooms = {};

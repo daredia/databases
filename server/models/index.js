@@ -10,7 +10,7 @@ module.exports = {
           if (err) {
             throw err;
           }
-          res.send(JSON.stringify(rows));
+          res.send(JSON.stringify({results: rows}));
         }
       );
 
@@ -29,7 +29,7 @@ module.exports = {
             throw err;
           }
           userID = rows[rows.length - 1].id; // maybe need to handle if it returns just one object and not an array
-          var query = 'INSERT INTO messages (user, text, room) VALUES ("';
+          var query = 'INSERT INTO messages (user, text, roomname) VALUES ("';
           query += userID + '", "';
           query += msgObj.message;
           query += '","' + msgObj.roomname + '");';

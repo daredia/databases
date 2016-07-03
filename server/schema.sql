@@ -8,7 +8,7 @@ CREATE TABLE messages (
   /* Describe your table here.*/
   `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `user` INTEGER NULL DEFAULT NULL,
-  `room` VARCHAR(100) NULL DEFAULT 'NULL',
+  `roomname` VARCHAR(100) NULL DEFAULT 'NULL',
   `text` TEXT NULL DEFAULT NULL,
   -- `createdAt` DATETIME,
   PRIMARY KEY (`id`)
